@@ -1,0 +1,3 @@
+IC_0.input IC.output_1.txt
+IC_1.input IC.output_2.txt
+IC_2.input IC.output_3.txt

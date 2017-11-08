@@ -1,0 +1,15 @@
+MSS_43.input MSS_43_11.output.txt A1
+MSS_43.input MSS_43_12.output.txt A1
+MSS_43.input MSS_43_13.output.txt A1
+MSS_43.input MSS_43_14.output.txt A1
+MSS_43.input MSS_43_15.output.txt A1
+MSS_43.input MSS_43_21.output.txt A2
+MSS_43.input MSS_43_22.output.txt A2
+MSS_43.input MSS_43_23.output.txt A2
+MSS_43.input MSS_43_24.output.txt A2
+MSS_43.input MSS_43_25.output.txt A2
+MSS_43.input MSS_43_31.output.txt A3
+MSS_43.input MSS_43_32.output.txt A3
+MSS_43.input MSS_43_33.output.txt A3
+MSS_43.input MSS_43_34.output.txt A3
+MSS_43.input MSS_43_35.output.txt A3
