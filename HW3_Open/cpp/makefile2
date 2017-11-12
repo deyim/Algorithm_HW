@@ -1,0 +1,32 @@
+CC = g++
+CFLAGS = -c
+TARGET = sort
+OBJECTS = main.o random.o heap_sort.o insertion_sort.o qsort.o qsort_main.o qsort_sort.o quick_sort.o quick_sort_opt.o selection_rec.o
+
+all : $(TARGET)
+
+$(TARGET) : $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^
+
+$(TARGET) : main.o 
+main.o : main.cpp
+	g++ -c -o main.o main.cpp
+random.o : entirely_random.cpp
+	g++ -c -o entirely_random.o entirely_random.cpp
+heap_sort.o : heap_sort.cpp
+	g++ -c -o heap_sort.o heap_sort.cpp
+insertion_sort.o : insertion_sort.cpp
+	g++ -c -o insertion_sort.o insertion_sort.cpp
+qsort.o : qsort.cpp
+	g++ -c -o qsort.o qsort.cpp
+qsort_main.o : qsort_main.cpp
+	g++ -c -o qsort.o qsort.cpp
+quick_sort.o : quick_sort.cpp
+	g++ -c -o quick_sort.o quick_sort.cpp
+quick_sort_opt.o : quick_sort_opt.cpp
+	g++ -c -o quick_sort_opt.o quick_sort_opt.cpp
+selection_rec.o : selection_rec.cpp
+	g++ -c -o selection_rec.o selection_rec.cpp
+
+clean:
+	rm *.o sort

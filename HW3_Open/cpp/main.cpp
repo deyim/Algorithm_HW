@@ -3,8 +3,8 @@
 
 #include "my_types.h"
 
-#include <Windows.h>
-__int64 start, freq, end;
+//#include <Windows.h>
+//__int64 start, freq, end;
 //#define CHECK_TIME_START QueryPerformanceFrequency((LARGE_INTEGER*)&freq); QueryPerformanceCounter((LARGE_INTEGER*)&start)
 //#define CHECK_TIME_END(a) QueryPerformanceCounter((LARGE_INTEGER*)&end); a = (float)((float)(end - start) / (freq / 1000.0f))
 float compute_time;
@@ -37,7 +37,7 @@ int read_input_data(const char *file_name, int *n, ELEMENT **data) {
 	fprintf(stdout, "*** Number of elements = %d\n", *n);
 
 	if ((*data = (ELEMENT *)malloc(sizeof(ELEMENT)*(*n))) == NULL) {
-		fprintf(stderr, "Error: cannot allocate memory for %d ELEMENTs...\n", n);
+		fprintf(stderr, "Error: cannot allocate memory for %d ELEMENTs...\n", *n);
 		return 0;
 	}
 	fread(*data, sizeof(ELEMENT), *n, fp);	// assume there is no problem in the input data file
@@ -63,7 +63,7 @@ int check_sorting_result(const char *file_name, int n, ELEMENT *data) {
 	return 1;
 }
 
-void main(void) {
+int main(void) {
 	ELEMENT *data;
 	int n;
 	FILE *fp;
@@ -356,4 +356,5 @@ void main(void) {
 #endif // end of TEST_QUICK_SORT_OPT
 
 	 fclose(fp);
+	 return 0;
 }

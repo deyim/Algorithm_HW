@@ -3,11 +3,11 @@
 // 2017.11. 3
 //
 
-#include <Windows.h>
-__int64 start, freq, end;
-#define CHECK_TIME_START QueryPerformanceFrequency((LARGE_INTEGER*)&freq); QueryPerformanceCounter((LARGE_INTEGER*)&start)
-#define CHECK_TIME_END(a) QueryPerformanceCounter((LARGE_INTEGER*)&end); a = (float)((float)(end - start) / (freq / 1000.0f))
-float compute_time;
+//#include <Windows.h>
+//__int64 start, freq, end;
+//#define CHECK_TIME_START QueryPerformanceFrequency((LARGE_INTEGER*)&freq); QueryPerformanceCounter((LARGE_INTEGER*)&start)
+//#define CHECK_TIME_END(a) QueryPerformanceCounter((LARGE_INTEGER*)&end); a = (float)((float)(end - start) / (freq / 1000.0f))
+//float compute_time;
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,9 +57,14 @@ void init_RECORD_array(RECORD *data, int n) {
 	int i, j;
 	
 	for (i = 0; i < n; i++) {
-		itoa(i, data[i].hexadecimal, 16);
+		/////////////////////////////////////
+		//////////////////////////////////////
+		///change itoa to sprintf!!!!!
+		////////////////////////////////////////
+		//////////////////////////////////
+		//itoa(i, data[i].hexadecimal, 16);
 		data[i].key = i;
-		itoa(i, data[i].octal, 8);
+		//itoa(i, data[i].octal, 8);
 		data[i].dummy1[0] = 2 * i;
 		data[i].dummy2[0] = -i;
 	}
@@ -126,10 +131,10 @@ void main(void) {
 	printf("\n\n");
 #endif
 
-	CHECK_TIME_START;
+	//CHECK_TIME_START;
 	qsort(Array, n, sizeof(RECORD), my_record_keys_compare);
-	CHECK_TIME_END(compute_time);
-	printf("*** RECORD type of size %d: Time taken by qsort() = %.3fms\n", sizeof(RECORD), compute_time);
+	//CHECK_TIME_END(compute_time);
+	//printf("*** RECORD type of size %d: Time taken by qsort() = %.3fms\n", sizeof(RECORD), compute_time);
 
 #ifdef PRINT_DATA
 	printf("* Data after sort: ");
@@ -147,10 +152,10 @@ void main(void) {
 	printf("\n\n");
 #endif
 
-	CHECK_TIME_START;
+	//CHECK_TIME_START;
 	qsort(Array2, n, sizeof(RECORD2), my_unsigned_int_keys_compare);
-	CHECK_TIME_END(compute_time);
-	printf("*** RECORD2 type of size %d: Time taken by qsort() = %.3fms\n", sizeof(RECORD2), compute_time);
+	//CHECK_TIME_END(compute_time);
+	//printf("*** RECORD2 type of size %d: Time taken by qsort() = %.3fms\n", sizeof(RECORD2), compute_time);
 
 #ifdef PRINT_DATA
 	printf("* Data after sort: ");
