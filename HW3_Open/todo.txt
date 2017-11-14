@@ -1,0 +1,20 @@
+1. Implement rough version of basic functions
+int INSERTION_SORT(ELEMENT data[], int f, int b);
+int HEAP_SORT(ELEMENT data[], int f, int b);
+int QSORT(ELEMENT data[], int f, int b);
+int QUICK_SORT(ELEMENT data[], int f, int b);
+int SELECTION_REC(ELEMENT data[], int f, int b, int k, int *index);
+
+2. Implement rough version of optimized qsort
+int QUICK_SORT_OPT(ELEMENT data[], int f, int b);
+
+3. Implement functions in main.cpp
+int check_sorting_result(const char *file_name, int n, ELEMENT *data) 
+
+4. Optimize made functions
+
+5. Make experiment data
+
+6. Experiment and make result
+
+**All implementation should be done without referring sample code simultaneously.

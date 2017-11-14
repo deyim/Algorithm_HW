@@ -9,6 +9,8 @@
 //#define CHECK_TIME_END(a) QueryPerformanceCounter((LARGE_INTEGER*)&end); a = (float)((float)(end - start) / (freq / 1000.0f))
 //float compute_time;
 
+
+//This file is not included in visual studio folder
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -62,6 +64,7 @@ void init_RECORD_array(RECORD *data, int n) {
 		///change itoa to sprintf!!!!!
 		////////////////////////////////////////
 		//////////////////////////////////
+
 		//itoa(i, data[i].hexadecimal, 16);
 		data[i].key = i;
 		//itoa(i, data[i].octal, 8);

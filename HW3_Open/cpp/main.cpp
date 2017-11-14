@@ -9,7 +9,7 @@
 //#define CHECK_TIME_END(a) QueryPerformanceCounter((LARGE_INTEGER*)&end); a = (float)((float)(end - start) / (freq / 1000.0f))
 float compute_time;
 
-#define STUDENT_ID	20151234
+#define STUDENT_ID	20140938
 
 #include "test_data_config.h"  // the content of this file will be modified for evaluation.
 
@@ -57,7 +57,8 @@ int check_selection_result(int index_correct, int index_computed, int n, ELEMENT
 		return 0;
 }
 
-int check_sorting_result(const char *file_name, int n, ELEMENT *data) {
+int check_sorting_result(const char *file_name, int n, ELEMENT *data) 
+{
 	// return 1 if the input data has been sorted correctly
 	// or 0 otherwise
 	return 1;

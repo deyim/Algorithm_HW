@@ -9,6 +9,13 @@ int keys_compare(const void *a, const void *b) {
 	return 0;
 }
 
+/*
+
+QSORT uses the library function given by stdlib.h
+no need to make code about it 
+
+*/
+
 int QSORT(ELEMENT data[], int left, int right) {
 	// must return 1 if the function finishes normally or return 0 otherwise
 
