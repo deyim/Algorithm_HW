@@ -17,7 +17,7 @@ typedef struct {
 } ELEMENT;
 #define ELEMENT_KEY(x) ((x)->key)
 
-void main() {
+int main() {
 	unsigned scale_factor_uint = UINT_MAX >> 2;
 	float scale_factor_flt = 90.0f;
 
@@ -68,5 +68,6 @@ void main() {
 		fprintf(stdout, "  i = %6d: (%11u, %5.1f, %17.14f, %s)\n", i, ELEMENT_KEY(&element), element.score, element.other, element.name);
 	}
 	fclose(fp);
+	return 0;
 #endif
 }

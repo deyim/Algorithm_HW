@@ -114,7 +114,7 @@ void init_RECORD2_array(RECORD2 *data, int n) {
 #define N_MAX_RECORDS 16
 #define PRINT_DATA
 
-void main(void) {
+int main(void) {
 	int n;
 	RECORD Array[N_MAX_RECORDS];
 	RECORD2 Array2[N_MAX_RECORDS];
@@ -162,5 +162,7 @@ void main(void) {
 	for (int i = 0; i < n; i++)
 		printf(" ([%u]) ", Array2[i]);
 	printf("\n\n");
+
+	return 0;
 #endif
 }
