@@ -1,6 +1,9 @@
 #include "my_types.h"
 #include <stdlib.h>
 
+///QSORT COMPLETED///
+
+
 int keys_compare(const void *a, const void *b) {
 	ELEMENT *rec_a, *rec_b;
 	rec_a = (ELEMENT*)a;
@@ -8,9 +11,7 @@ int keys_compare(const void *a, const void *b) {
 	// do it yourself
 	if(rec_a->key < rec_b->key) return -1;
 	else if(rec_a->key == rec_b->key) return 0;
-	else return 1;
-
-	
+	else return 1;	
 }
 
 /*
