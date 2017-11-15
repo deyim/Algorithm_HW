@@ -16,8 +16,8 @@ float compute_time;
 #define DUMP_DATA
 
 //#define TEST_SELECTION_REC
-#define TEST_INSERTION_SORT
-//#define TEST_HEAP_SORT
+//#define TEST_INSERTION_SORT
+#define TEST_HEAP_SORT
 //#define TEST_QSORT
 //#define TEST_QUICK_SORT
 //#define TEST_QUICK_SORT_OPT
@@ -169,9 +169,9 @@ int main(void) {
 #ifdef TEST_HEAP_SORT
 	sprintf(test_method, "HEAP_SORT");
 
-	test_cases_sorting = 1; // for a simple test
-	for (int i = 0; i < test_cases_sorting; i++) {
-		read_input_data(test_data_file_sorting[i], &n, &data);
+	test_cases_sorting = 2; // for a simple test
+	for (int j = 0; j < test_cases_sorting; j++) {
+		read_input_data(test_data_file_sorting[j], &n, &data);
 
 #ifdef DUMP_DATA
 		{
@@ -187,21 +187,24 @@ int main(void) {
 		if (test_result == 1) {
 			// the function has finished successfully
 			fprintf(fp, "^^^ Sorting method = %s, Test file = %s, Result =  %d\n",
-				test_method, test_data_file_sorting[i], check_sorting_result(SORTED_INPUT_FILE_NAME_0, n, data));
+				test_method, test_data_file_sorting[j], check_sorting_result(SORTED_INPUT_FILE_NAME_0, n, data));
 		}
 		else
-			fprintf(fp, "^^^ Sorting method = %s, Test file = %s, Result =  %d\n", test_method, test_data_file_sorting[i], 0);
+			fprintf(fp, "^^^ Sorting method = %s, Test file = %s, Result =  %d\n", test_method, test_data_file_sorting[j], 0);
 
 #ifdef DUMP_DATA
 		{
 			ELEMENT *ptr = data;
 			fprintf(stdout, "*** %s: Output data\n", test_method);
-			for (int i = 0; i < n; i++, ptr++)
+			for (int i = 0; i < n; i++, ptr++){
 				fprintf(stdout, "  i = %6d: (%11u, %5.1f, %17.14f, %s)\n", i, ELEMENT_KEY(ptr), ptr->score, ptr->other, ptr->name);
+			}
 			fprintf(stdout, "\n");
 		}
 #endif
-}
+		free(data);
+		printf("again loop!!\n");
+	}
 #endif // end of TEST_HEAP_SORT
 
 

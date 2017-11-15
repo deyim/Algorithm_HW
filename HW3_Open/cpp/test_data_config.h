@@ -1,12 +1,12 @@
 #pragma once
 
-#define INPUT_FILE_NAME_0	"../Data/ENTIRELY_RANDOM_32.binary"
+#define INPUT_FILE_NAME_0	"../Data/ENTIRELY_RANDOM_8.binary"
 #define INPUT_FILE_NAME_1	"../Data/ENTIRELY_RANDOM_32.binary"
 #define INPUT_FILE_NAME_2	"../Data/ENTIRELY_RANDOM_32.binary"
 //#define INPUT_FILE_NAME_1	"../Data/ENTIRELY_RANDOM_1024.binary"
 //#define INPUT_FILE_NAME_2	"../Data/ENTIRELY_RANDOM_1048576.binary"
 
-#define SORTED_INPUT_FILE_NAME_0	"../Data/ENTIRELY_RANDOM_32_sorted.binary"
+#define SORTED_INPUT_FILE_NAME_0	"../Data/ENTIRELY_RANDOM_8_sorted.binary"
 #define SORTED_INPUT_FILE_NAME_1	"../Data/ENTIRELY_RANDOM_32_sorted.binary"
 #define SORTED_INPUT_FILE_NAME_2	"../Data/ENTIRELY_RANDOM_32_sorted.binary"
 //#define SORTED_INPUT_FILE_NAME_1	"../Data/ENTIRELY_RANDOM_1024_sorted.binary"
