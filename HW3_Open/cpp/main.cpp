@@ -13,7 +13,7 @@ float compute_time;
 
 #include "test_data_config.h"  // the content of this file will be modified for evaluation.
 
-//#define DUMP_DATA
+#define DUMP_DATA
 
 //#define TEST_SELECTION_REC
 //#define TEST_INSERTION_SORT
@@ -81,6 +81,8 @@ int main(void) {
 		exit(-1);
 	}
 
+//.......................................SELECTION REC CHECK.........................................//
+
 #ifdef TEST_SELECTION_REC
 	sprintf(test_method, "SELECTION_REC");
 
@@ -119,7 +121,10 @@ int main(void) {
 #endif
 		}
 	}
-#endif // end of TEST_INSERTION_SORT
+#endif // end of TEST_SELECTION_SORT
+
+
+//...................................... INSERTION SORT CHECK .........................................//
 
 #ifdef TEST_INSERTION_SORT
 	sprintf(test_method, "INSERTION_SORT");
@@ -159,6 +164,8 @@ int main(void) {
 #endif // end of TEST_INSERTION_SORT
 
 
+//...................................... HEAP SORT CHECK .........................................//
+
 #ifdef TEST_HEAP_SORT
 	sprintf(test_method, "HEAP_SORT");
 
@@ -197,6 +204,8 @@ int main(void) {
 }
 #endif // end of TEST_HEAP_SORT
 
+
+//...................................... LIBRARY QUICK SORT CHECK .........................................//
 
 #ifdef TEST_QSORT
 	sprintf(test_method, "QSORT");
@@ -240,6 +249,9 @@ int main(void) {
 	}
 #endif // end of TEST_QSORT
 
+
+//...................................... TYPICAL QUICK SORT CHECK .........................................//
+
 #ifdef TEST_QUICK_SORT
 	sprintf(test_method, "QUICK_SORT");
 
@@ -279,6 +291,8 @@ int main(void) {
 #endif // end of TEST_QUICK_SORT
 
 
+//...................................... OPTIMIZED QUICK SORT CHECK .........................................//
+
 #ifdef TEST_QUICK_SORT_OPT
 	sprintf(test_method, "QUICK_SORT_OPT");
 
@@ -316,6 +330,10 @@ int main(void) {
 #endif
 }
 #endif // end of TEST_QUICK_SORT_OPT
+
+
+//...................................... OPTIMIZED QUICK SORT CHECK .........................................//
+
 
 #ifdef TEST_QUICK_SORT_OPT_TIME_CHECK
 	// time measuring code must be inserted
