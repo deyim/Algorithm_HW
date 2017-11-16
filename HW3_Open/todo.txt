@@ -1,7 +1,7 @@
 1. Implement rough version of basic functions
-int INSERTION_SORT(ELEMENT data[], int f, int b);
-int HEAP_SORT(ELEMENT data[], int f, int b);
-int QSORT(ELEMENT data[], int f, int b);
+ok int INSERTION_SORT(ELEMENT data[], int f, int b);
+ok int HEAP_SORT(ELEMENT data[], int f, int b);
+ok int QSORT(ELEMENT data[], int f, int b);
 int QUICK_SORT(ELEMENT data[], int f, int b);
 
 2. Implement rough version of optimized qsort
