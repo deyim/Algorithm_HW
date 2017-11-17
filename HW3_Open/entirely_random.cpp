@@ -8,7 +8,7 @@
 
 //#define N_ELEMENTS 1048576	// 2^20
 //#define N_ELEMENTS 1024		// 2^10
-#define N_ELEMENTS 8		// 2^5
+#define N_ELEMENTS 64		// 2^5
 
 #define FILE_NAME_PREFIX  "ENTIRELY_RANDOM"
 

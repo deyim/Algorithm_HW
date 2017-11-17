@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include "my_types.h"
 
 //#include <Windows.h>
@@ -15,8 +15,8 @@ float compute_time;
 
 #define DUMP_DATA
 
-//#define TEST_SELECTION_REC
-#define TEST_INSERTION_SORT
+#define TEST_SELECTION_REC
+//#define TEST_INSERTION_SORT
 //#define TEST_HEAP_SORT
 //#define TEST_QSORT
 //#define TEST_QUICK_SORT
@@ -86,7 +86,8 @@ int main(void) {
 #ifdef TEST_SELECTION_REC
 	sprintf(test_method, "SELECTION_REC");
 
-	test_cases_sorting = 2; // for a simple test
+	test_cases_sorting = 1; // for a simple test
+	ELEMENT checking[n];
 	for (int i = 0; i < test_cases_sorting; i++) {
 		read_input_data(test_data_file_sorting[i], &n, &data);
 
@@ -101,7 +102,10 @@ int main(void) {
 #endif
 		{
 			int index_computed;
-
+			
+			memcpy(checking, data, sizeof(ELEMENT)*(n));
+			INSERTION_SORT(checking, 0, n-1);
+			printf("REAL kth Element: %d\n", ELEMENT_KEY(&checking[test_data_k_selection[i]]));
 			test_result = SELECTION_REC(data, 0, n - 1, test_data_k_selection[i], &index_computed);
 			if (test_result == 1) {
 				// the function has finished successfully
