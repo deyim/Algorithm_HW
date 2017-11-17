@@ -9,7 +9,7 @@ int keys_compare(const void *a, const void *b) {
 	rec_a = (ELEMENT*)a;
 	rec_b = (ELEMENT*)b;
 	// do it yourself
-	if(rec_a->key > rec_b->key) return -1;
+	if(rec_a->key < rec_b->key) return -1;
 	else if(rec_a->key == rec_b->key) return 0;
 	else return 1;	
 }

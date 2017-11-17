@@ -14,7 +14,7 @@ int INSERTION_SORT(ELEMENT data[], int left, int right) {
 		cur = i;
 		substitute(&tmp, &data[cur]);
 		curkey = ELEMENT_KEY(&tmp);
-		while(curkey > ELEMENT_KEY(&data[cur-1]) && cur > left){ 
+		while(curkey < ELEMENT_KEY(&data[cur-1]) && cur > left){ 
 			substitute(&data[cur], &data[cur-1]);
 			cur--;
 		}

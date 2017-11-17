@@ -16,10 +16,10 @@ float compute_time;
 #define DUMP_DATA
 
 //#define TEST_SELECTION_REC
-//#define TEST_INSERTION_SORT
+#define TEST_INSERTION_SORT
 //#define TEST_HEAP_SORT
 //#define TEST_QSORT
-#define TEST_QUICK_SORT
+//#define TEST_QUICK_SORT
 //#define TEST_QUICK_SORT_OPT
 //#define TEST_QUICK_SORT_OPT_TIME_CHECK
 
@@ -129,7 +129,7 @@ int main(void) {
 #ifdef TEST_INSERTION_SORT
 	sprintf(test_method, "INSERTION_SORT");
 
-	test_cases_sorting = 1; // for a simple test
+	test_cases_sorting = 2; // for a simple test
 	for (int i = 0; i < test_cases_sorting; i++) {
 		read_input_data(test_data_file_sorting[i], &n, &data);
 
@@ -213,7 +213,7 @@ int main(void) {
 #ifdef TEST_QSORT
 	sprintf(test_method, "QSORT");
 
-	test_cases_sorting = 3; // for a simple test
+	test_cases_sorting = 2; // for a simple test
 	for (int i = 0; i < test_cases_sorting; i++) {
 		read_input_data(test_data_file_sorting[i], &n, &data);
 
@@ -258,7 +258,7 @@ int main(void) {
 #ifdef TEST_QUICK_SORT
 	sprintf(test_method, "QUICK_SORT");
 
-	test_cases_sorting = 1; // for a simple test
+	test_cases_sorting = 2; // for a simple test
 	for (int i = 0; i < test_cases_sorting; i++) {
 		read_input_data(test_data_file_sorting[i], &n, &data);
 
