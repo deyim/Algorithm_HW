@@ -87,7 +87,7 @@ int main(void) {
 	sprintf(test_method, "SELECTION_REC");
 
 	test_cases_sorting = 1; // for a simple test
-	ELEMENT checking[n];
+	
 	for (int i = 0; i < test_cases_sorting; i++) {
 		read_input_data(test_data_file_sorting[i], &n, &data);
 
@@ -103,9 +103,6 @@ int main(void) {
 		{
 			int index_computed;
 			
-			memcpy(checking, data, sizeof(ELEMENT)*(n));
-			INSERTION_SORT(checking, 0, n-1);
-			printf("REAL kth Element: %d\n", ELEMENT_KEY(&checking[test_data_k_selection[i]]));
 			test_result = SELECTION_REC(data, 0, n - 1, test_data_k_selection[i], &index_computed);
 			if (test_result == 1) {
 				// the function has finished successfully
