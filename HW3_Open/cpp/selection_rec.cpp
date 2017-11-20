@@ -11,18 +11,23 @@ int SELECT(ELEMENT data[], int k, int elemCnt);
 //k = kth index!!
 int SELECTION_REC(ELEMENT data[], int left, int right, int k, int *index) {
 	
-	ELEMENT checking[right-left+1];
-	ELEMENT data_copy[right-left+1];
+	//ELEMENT checking[right-left+1];
+	ELEMENT *data_copy;
+	data_copy = (ELEMENT*)malloc(sizeof(ELEMENT)*(right-left+1));
 	int target;
 
 	//int findingIDX = k-1;
 
 	memcpy(data_copy, data, sizeof(ELEMENT)*(right-left+1));
-	memcpy(checking, data, sizeof(ELEMENT)*(right-left+1));
+	//memcpy(checking, data, sizeof(ELEMENT)*(right-left+1));
 
 	//for check
-	INSERTION_SORT(checking, left, right);
-	printf("REAL finding %d idx Element: %d\n", k-1, ELEMENT_KEY(&checking[k-1]));
+	// INSERTION_SORT(checking, left, right);
+	// ELEMENT *ptr = checking;
+	// for (int i = 0; i <= right; i++, ptr++)
+	// 	fprintf(stdout, "  i = %6d: (%11u, %5.1f, %17.14f, %s)\n", i, ELEMENT_KEY(ptr), ptr->score, ptr->other, ptr->name);
+	// fprintf(stdout, "\n");
+	//printf("REAL finding %d idx Element: %d\n", k-1, ELEMENT_KEY(&checking[k-1]));
 	
 	//selection recursion
 	target = SELECT(data_copy, k-1, right-left+1);
@@ -32,15 +37,22 @@ int SELECTION_REC(ELEMENT data[], int left, int right, int k, int *index) {
 	for(int i = left; i <= right ; i++)
 		if(ELEMENT_KEY(&data[i]) == target)
 			*index = i;
-			
+	
+	free(data_copy);
+
 	return 1;
 }
 
 int SELECT(ELEMENT data[], int k, int elemCnt)
 {
-	ELEMENT data_copy[elemCnt];
-	ELEMENT data_copy2[elemCnt];
-	ELEMENT medians[elemCnt/5];
+	// ELEMENT data_copy[elemCnt];
+	// ELEMENT data_copy2[elemCnt];
+	// ELEMENT medians[elemCnt/5];
+
+	ELEMENT *data_copy, *data_copy2, *medians;
+	data_copy = (ELEMENT*)malloc(sizeof(ELEMENT)*(elemCnt));
+	data_copy2 = (ELEMENT*)malloc(sizeof(ELEMENT)*(elemCnt));
+	medians = (ELEMENT*)malloc(sizeof(ELEMENT)*(elemCnt/5));
 
 	ELEMENT *S1, *S3;
 	
@@ -55,6 +67,7 @@ int SELECT(ELEMENT data[], int k, int elemCnt)
 		return ELEMENT_KEY(&data[k]);	
 	}
 	else{
+		//printf("dubefsdf\n");
 		int median_idx=0;
 		for(int i = 0; i<elemCnt; i+=5){
 			if(i+4 >= elemCnt) break;			
@@ -105,6 +118,9 @@ int SELECT(ELEMENT data[], int k, int elemCnt)
 			}
 		}
 	}
+	free(data_copy); 
+	free(data_copy2); 
+	free(medians);
 }
 
 void substitute_sel(ELEMENT *A, ELEMENT *B){

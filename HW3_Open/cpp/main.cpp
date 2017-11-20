@@ -17,7 +17,7 @@ float compute_time;
 
 #define TEST_SELECTION_REC
 //#define TEST_INSERTION_SORT
-//#define TEST_HEAP_SORT
+// #define TEST_HEAP_SORT
 //#define TEST_QSORT
 //#define TEST_QUICK_SORT
 //#define TEST_QUICK_SORT_OPT
@@ -48,11 +48,12 @@ int read_input_data(const char *file_name, int *n, ELEMENT **data) {
 
 int check_selection_result(int index_correct, int index_computed, int n, ELEMENT *data) {
 	// return 1 if the selection has been carried out correctly or 0 otherwise
-	
+	printf("in index_correct %d elem: %d vs in index_computed %d elem: %d\n", index_correct, ELEMENT_KEY(data + index_correct),  index_computed, ELEMENT_KEY(data + index_computed));
 	if ((index_computed < 0) || (index_computed >= n))
 		return 0;
-	if (ELEMENT_KEY(data + index_correct) == ELEMENT_KEY(data + index_computed))
+	if (ELEMENT_KEY(data + index_correct) == ELEMENT_KEY(data + index_computed)){	
 		return 1;
+	}
 	else
 		return 0;
 }
@@ -60,7 +61,13 @@ int check_selection_result(int index_correct, int index_computed, int n, ELEMENT
 int check_sorting_result(const char *file_name, int n, ELEMENT *data) 
 {
 	// return 1 if the input data has been sorted correctly
-	// or 0 otherwise
+	int prev, next;
+	prev = ELEMENT_KEY(&data[0]);
+	for(int i = 1 ; i < n ; i++){
+		next = ELEMENT_KEY(&data[i]);
+		if(prev > next) return 0;
+		prev = next;
+	}
 	return 1;
 }
 
@@ -86,7 +93,7 @@ int main(void) {
 #ifdef TEST_SELECTION_REC
 	sprintf(test_method, "SELECTION_REC");
 
-	test_cases_sorting = 1; // for a simple test
+	test_cases_sorting = 2; // for a simple test
 	
 	for (int i = 0; i < test_cases_sorting; i++) {
 		read_input_data(test_data_file_sorting[i], &n, &data);
@@ -105,7 +112,7 @@ int main(void) {
 			
 			test_result = SELECTION_REC(data, 0, n - 1, test_data_k_selection[i], &index_computed);
 			if (test_result == 1) {
-				// the function has finished successfully
+				//the function has finished successfully
 				fprintf(fp, "^^^ Selection method = %s, Test file = %s, Result =  %d\n",
 					test_method, test_data_file_sorting[i], check_selection_result(test_data_indices_selected[i], index_computed, n, data));
 			}
@@ -121,6 +128,7 @@ int main(void) {
 			}
 #endif
 		}
+		free()
 	}
 #endif // end of TEST_SELECTION_SORT
 
@@ -130,7 +138,7 @@ int main(void) {
 #ifdef TEST_INSERTION_SORT
 	sprintf(test_method, "INSERTION_SORT");
 
-	test_cases_sorting = 2; // for a simple test
+	test_cases_sorting = 3; // for a simple test
 	for (int i = 0; i < test_cases_sorting; i++) {
 		read_input_data(test_data_file_sorting[i], &n, &data);
 
@@ -204,7 +212,7 @@ int main(void) {
 		}
 #endif
 		free(data);
-		printf("again loop!!\n");
+		//printf("again loop!!\n");
 	}
 #endif // end of TEST_HEAP_SORT
 
@@ -214,7 +222,7 @@ int main(void) {
 #ifdef TEST_QSORT
 	sprintf(test_method, "QSORT");
 
-	test_cases_sorting = 2; // for a simple test
+	test_cases_sorting = 3; // for a simple test
 	for (int i = 0; i < test_cases_sorting; i++) {
 		read_input_data(test_data_file_sorting[i], &n, &data);
 
@@ -259,7 +267,7 @@ int main(void) {
 #ifdef TEST_QUICK_SORT
 	sprintf(test_method, "QUICK_SORT");
 
-	test_cases_sorting = 2; // for a simple test
+	test_cases_sorting = 3; // for a simple test
 	for (int i = 0; i < test_cases_sorting; i++) {
 		read_input_data(test_data_file_sorting[i], &n, &data);
 
@@ -300,7 +308,7 @@ int main(void) {
 #ifdef TEST_QUICK_SORT_OPT
 	sprintf(test_method, "QUICK_SORT_OPT");
 
-	test_cases_sorting = 1; // for a simple test
+	test_cases_sorting = 3; // for a simple test
 	for (int i = 0; i < test_cases_sorting; i++) {
 		read_input_data(test_data_file_sorting[i], &n, &data);
 

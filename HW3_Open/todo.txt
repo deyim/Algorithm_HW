@@ -6,7 +6,7 @@ ok int QUICK_SORT(ELEMENT data[], int f, int b);
 
 2. Implement rough version of optimized qsort
 int QUICK_SORT_OPT(ELEMENT data[], int f, int b);
-int SELECTION_REC(ELEMENT data[], int f, int b, int k, int *index);
+ok int SELECTION_REC(ELEMENT data[], int f, int b, int k, int *index);
 
 3. Implement functions in main.cpp
 int check_sorting_result(const char *file_name, int n, ELEMENT *data) 
