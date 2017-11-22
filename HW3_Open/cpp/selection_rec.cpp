@@ -12,9 +12,12 @@ int SELECT(ELEMENT data[], int k, int elemCnt);
 int SELECTION_REC(ELEMENT data[], int left, int right, int k, int *index) {
 	
 	//ELEMENT checking[right-left+1];
+	// ELEMENT *checking;
 	ELEMENT *data_copy;
-	data_copy = (ELEMENT*)malloc(sizeof(ELEMENT)*(right-left+1));
 	int target;
+
+	data_copy = (ELEMENT*)malloc(sizeof(ELEMENT)*(right-left+1));
+	//checking = (ELEMENT*)malloc(sizeof(ELEMENT)*(right-left+1));
 
 	//int findingIDX = k-1;
 
@@ -22,7 +25,7 @@ int SELECTION_REC(ELEMENT data[], int left, int right, int k, int *index) {
 	//memcpy(checking, data, sizeof(ELEMENT)*(right-left+1));
 
 	//for check
-	// INSERTION_SORT(checking, left, right);
+	//INSERTION_SORT(checking, left, right);
 	// ELEMENT *ptr = checking;
 	// for (int i = 0; i <= right; i++, ptr++)
 	// 	fprintf(stdout, "  i = %6d: (%11u, %5.1f, %17.14f, %s)\n", i, ELEMENT_KEY(ptr), ptr->score, ptr->other, ptr->name);
@@ -45,10 +48,6 @@ int SELECTION_REC(ELEMENT data[], int left, int right, int k, int *index) {
 
 int SELECT(ELEMENT data[], int k, int elemCnt)
 {
-	// ELEMENT data_copy[elemCnt];
-	// ELEMENT data_copy2[elemCnt];
-	// ELEMENT medians[elemCnt/5];
-
 	ELEMENT *data_copy, *data_copy2, *medians;
 	data_copy = (ELEMENT*)malloc(sizeof(ELEMENT)*(elemCnt));
 	data_copy2 = (ELEMENT*)malloc(sizeof(ELEMENT)*(elemCnt));
@@ -64,6 +63,9 @@ int SELECT(ELEMENT data[], int k, int elemCnt)
 	if(elemCnt<=7){
 		if(elemCnt==1) return ELEMENT_KEY(&data[0]);
 		 INSERTION_SORT(data, 0, elemCnt-1);
+		 free(data_copy); 
+		 free(data_copy2); 
+		 free(medians);
 		return ELEMENT_KEY(&data[k]);	
 	}
 	else{
@@ -110,7 +112,12 @@ int SELECT(ELEMENT data[], int k, int elemCnt)
 			return SELECT(S1, k, elemCnt-s2-s3);
 		}
 		else{
-			if(s1+s2>=k) return median;
+			if(s1+s2>=k){
+				free(data_copy); 
+				free(data_copy2); 
+				free(medians);
+				return median;
+			}
 			else{
 				S3 = (ELEMENT*)malloc(sizeof(ELEMENT)*(elemCnt-s1-s2));
 				memcpy(S3, data+s1+s2, sizeof(ELEMENT)*(elemCnt - s1-s2));
@@ -118,9 +125,7 @@ int SELECT(ELEMENT data[], int k, int elemCnt)
 			}
 		}
 	}
-	free(data_copy); 
-	free(data_copy2); 
-	free(medians);
+	
 }
 
 void substitute_sel(ELEMENT *A, ELEMENT *B){
