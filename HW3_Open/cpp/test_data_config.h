@@ -1,17 +1,17 @@
 #pragma once
 
 //#define INPUT_FILE_NAME_1	"../Data/ENTIRELY_RANDOM_8.binary"
-#define INPUT_FILE_NAME_0	"../Data/ENTIRELY_RANDOM_32.binary"
+#define INPUT_FILE_NAME_1	"../Data/ENTIRELY_RANDOM_32.binary"
 #define INPUT_FILE_NAME_3	"../Data/ENTIRELY_RANDOM_8.binary"
-#define INPUT_FILE_NAME_1	"../Data/ENTIRELY_RANDOM_128.binary"
+#define INPUT_FILE_NAME_0	"../Data/ENTIRELY_RANDOM_128.binary"
 //#define INPUT_FILE_NAME_0	"../Data/ENTIRELY_RANDOM_64.binary"
 #define INPUT_FILE_NAME_2 "../Data/ENTIRELY_RANDOM_1024.binary"
 #define INPUT_FILE_NAME_4	"../Data/ENTIRELY_RANDOM_1048576.binary"
 
 //#define SORTED_INPUT_FILE_NAME_1	"../Data/ENTIRELY_RANDOM_8_sorted.binary"
-#define SORTED_INPUT_FILE_NAME_0	"../Data/ENTIRELY_RANDOM_32_sorted.binary"
+#define SORTED_INPUT_FILE_NAME_1	"../Data/ENTIRELY_RANDOM_32_sorted.binary"
 #define SORTED_INPUT_FILE_NAME_3	"../Data/ENTIRELY_RANDOM_8_sorted.binary"
-#define SORTED_INPUT_FILE_NAME_1	"../Data/ENTIRELY_RANDOM_128_sorted.binary"
+#define SORTED_INPUT_FILE_NAME_0	"../Data/ENTIRELY_RANDOM_128_sorted.binary"
 //#define SORTED_INPUT_FILE_NAME_0	"../Data/ENTIRELY_RANDOM_64_sorted.binary"
 #define SORTED_INPUT_FILE_NAME_2	"../Data/ENTIRELY_RANDOM_1024_sorted.binary"
 #define SORTED_INPUT_FILE_NAME_4	"../Data/ENTIRELY_RANDOM_1048576_sorted.binary"

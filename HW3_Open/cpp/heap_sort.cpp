@@ -13,30 +13,20 @@ int checkIfHeap(ELEMENT data[], int left, int right);
 
 int HEAP_SORT(ELEMENT data[], int left, int right) 
 {
-	int i, datanum = right-left;
+	int i, datanum = right-left+1;
 	int check;
 
 	//make heap	
-	for( i = datanum/2 ; i >= 0 ; i--) //only for parents
+	for( i = datanum/2-1 ; i >= 0 ; i--) //only for parents
 		adjust(data, i, datanum);
 
-	ELEMENT *ptr = data;
-	for (int i = 0; i <= right; i++, ptr++)
-		fprintf(stdout, "  i = %6d: (%11u,)\n", i, ELEMENT_KEY(ptr));
-	fprintf(stdout, "\n");
-
-	check = checkIfHeap(data, left, right);
-	if(!check){
-		printf(" THIS IS NOT A HEAP!!!!!\n");
-		return 1;
-	}
-	printf(" THIS IS A HEAP!!!!!\n");
 	//extract item one by one
 	for( i = right-1 ; i >= 0 ; i--){
 		swap_heap(&data[0], &data[i+1]); //move max to the end of array
 		if(i==0) break;
-		adjust(data, 0, i); //make new array for reduced array
+		adjust(data, 0, i+1); //make new array for reduced array
 	}
+	/*********************************indexindexindex!!!!!*****************************************/
 	return 1;
 }
 
@@ -62,25 +52,28 @@ int checkIfHeap(ELEMENT data[], int left, int right)
 
 	}
 	return 1;
-
 }
 
 void adjust(ELEMENT data[], int root, int n)
 {
-	int child,rootKey = ELEMENT_KEY(&data[root]);
+	int child,rootKey;
+	rootKey = ELEMENT_KEY(&data[root]);
 	ELEMENT temp;
 	if(root == 0) child = 1;
 	else child = 2*root;
 	substitute_heap(&temp, &data[root]);
-	while(child <= n){
+
+	while(child < n){
 		if(child < n-1 && ELEMENT_KEY(&data[child]) < ELEMENT_KEY(&data[child+1])) child++;
-		else if(ELEMENT_KEY(&data[child]) < rootKey) break;
+
+		if(ELEMENT_KEY(&data[child]) < rootKey) break;
 		else{
 			substitute_heap(&data[child/2], &data[child]);
 			child *= 2;
 		}
 	}
-	substitute_heap(&data[child/2], &temp);
+	substitute_heap(&data[child/2], &temp); //마지막 child *=2 해준것떄문에 해줘야.. 즉 *2 해주기전 child와 root바꾸는거 
+	//내린거 없으면 root에 그대로  temp 넣어주는 거고. 
 }
 
 void substitute_heap(ELEMENT *A, ELEMENT *B){
