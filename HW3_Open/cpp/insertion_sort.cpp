@@ -14,7 +14,11 @@ int INSERTION_SORT(ELEMENT data[], int left, int right) {
 		cur = i;
 		substitute(&tmp, &data[cur]);
 		curkey = ELEMENT_KEY(&tmp);
-		while(curkey < ELEMENT_KEY(&data[cur-1]) && cur > left){ 
+		while(cur > left && curkey < ELEMENT_KEY(&data[cur-1])){ 
+			/***************8fatal ERROR!!!!**********************/
+			// if cur becomes 0 because of c--; below, 
+			// in the condition check sentence data[-1] is accessed!!!!
+			// if cur > left should be checked first!!
 			substitute(&data[cur], &data[cur-1]);
 			cur--;
 		}
@@ -23,3 +27,4 @@ int INSERTION_SORT(ELEMENT data[], int left, int right) {
 	return 1;
 }
 
+//1,048,576

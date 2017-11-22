@@ -7,17 +7,30 @@ void adjust(ELEMENT data[], int root, int n);
 // void makeHeap(ELEMENT data[], int root, int n);
 // void insertMaxHeap(ELEMENT data[], ELEMENT *elem, int *n);
 // ELEMENT * deleteMaxHeap(ELEMENT data[], int *n);
+int checkIfHeap(ELEMENT data[], int left, int right);
 
 ////짜쯩난다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!다만들었는데 못쓴다!!!!!!!!!!!!!!!!!!!!슈뱌아ㅏ아앙!!!!!!!!!!!!!!!!!!
 
 int HEAP_SORT(ELEMENT data[], int left, int right) 
 {
 	int i, datanum = right-left;
+	int check;
 
 	//make heap	
 	for( i = datanum/2 ; i >= 0 ; i--) //only for parents
 		adjust(data, i, datanum);
 
+	ELEMENT *ptr = data;
+	for (int i = 0; i <= right; i++, ptr++)
+		fprintf(stdout, "  i = %6d: (%11u,)\n", i, ELEMENT_KEY(ptr));
+	fprintf(stdout, "\n");
+
+	check = checkIfHeap(data, left, right);
+	if(!check){
+		printf(" THIS IS NOT A HEAP!!!!!\n");
+		return 1;
+	}
+	printf(" THIS IS A HEAP!!!!!\n");
 	//extract item one by one
 	for( i = right-1 ; i >= 0 ; i--){
 		swap_heap(&data[0], &data[i+1]); //move max to the end of array
@@ -28,11 +41,34 @@ int HEAP_SORT(ELEMENT data[], int left, int right)
 }
 
 
+//no recursion since data will be too big!
+int checkIfHeap(ELEMENT data[], int left, int right)
+{
+	int i, childStart, parent, bigChild;
+	printf("CHECKING IF THIS IS HEAP\n");
+	childStart = (right)/2;
+	for(i = childStart ; i < right ; i += 2){
+		if(ELEMENT_KEY(&data[i]) > ELEMENT_KEY(&data[i+1]))	bigChild = i;
+		else bigChild = i+1;
+
+		while(parent >= 1){
+			parent = (bigChild-1)/2;
+			if(ELEMENT_KEY(&data[parent]) < ELEMENT_KEY(&data[bigChild])){
+				printf("parent in %d : %d vs child in %d: %d\n", parent, ELEMENT_KEY(&data[parent]), bigChild, ELEMENT_KEY(&data[bigChild]));
+				return 0;
+			}
+			bigChild = parent;
+		}
+
+	}
+	return 1;
+
+}
+
 void adjust(ELEMENT data[], int root, int n)
 {
 	int child,rootKey = ELEMENT_KEY(&data[root]);
 	ELEMENT temp;
-
 	if(root == 0) child = 1;
 	else child = 2*root;
 	substitute_heap(&temp, &data[root]);

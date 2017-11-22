@@ -15,9 +15,9 @@ float compute_time;
 
 //#define DUMP_DATA
 
-#define TEST_SELECTION_REC
+//#define TEST_SELECTION_REC
 //#define TEST_INSERTION_SORT
-// #define TEST_HEAP_SORT
+#define TEST_HEAP_SORT
 // #define TEST_QSORT
 // #define TEST_QUICK_SORT
 //#define TEST_QUICK_SORT_OPT
