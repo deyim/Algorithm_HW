@@ -15,12 +15,13 @@ float compute_time;
 
 //#define DUMP_DATA
 
-//#define TEST_SELECTION_REC
-//#define TEST_INSERTION_SORT
-#define TEST_HEAP_SORT
-// #define TEST_QSORT
-// #define TEST_QUICK_SORT
-//#define TEST_QUICK_SORT_OPT
+//#define TEST_SELECTION_REC //PERFECT
+//#define TEST_INSERTION_SORT //PERFECT
+//#define TEST_HEAP_SORT //PERFECT
+// #define TEST_QSORT //PERFECT
+// #define TEST_QUICK_SORT //PERFECT
+
+#define TEST_QUICK_SORT_OPT
 //#define TEST_QUICK_SORT_OPT_TIME_CHECK
 
 

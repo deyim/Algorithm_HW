@@ -20,27 +20,24 @@ int SELECTION_REC(ELEMENT data[], int left, int right, int k, int *index) {
 	//checking = (ELEMENT*)malloc(sizeof(ELEMENT)*(right-left+1));
 
 	//int findingIDX = k-1;
+	memcpy(data_copy, data+left, sizeof(ELEMENT)*(right-left+1));
+	/*********************************data+left index!!!!!!**********************************************************/
 
-	memcpy(data_copy, data, sizeof(ELEMENT)*(right-left+1));
 	//memcpy(checking, data, sizeof(ELEMENT)*(right-left+1));
-
-	//for check
-	//INSERTION_SORT(checking, left, right);
-	// ELEMENT *ptr = checking;
-	// for (int i = 0; i <= right; i++, ptr++)
-	// 	fprintf(stdout, "  i = %6d: (%11u, %5.1f, %17.14f, %s)\n", i, ELEMENT_KEY(ptr), ptr->score, ptr->other, ptr->name);
-	// fprintf(stdout, "\n");
-	//printf("REAL finding %d idx Element: %d\n", k-1, ELEMENT_KEY(&checking[k-1]));
 	
 	//selection recursion
 	target = SELECT(data_copy, k-1, right-left+1);
+	// printf("1111target: %d index: %d\n", target, *index);
+
 
 
 	//finding target index
-	for(int i = left; i <= right ; i++)
-		if(ELEMENT_KEY(&data[i]) == target)
+	for(int i = left; i <= right ; i++){
+		if(ELEMENT_KEY(&data[i]) == target){
 			*index = i;
-	
+		}
+	}
+
 	free(data_copy);
 
 	return 1;
