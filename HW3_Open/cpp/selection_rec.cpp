@@ -40,7 +40,7 @@ int SELECTION_REC(ELEMENT data[], int left, int right, int k, int *index) {
 
 	free(data_copy);
 
-	return 0;
+	return 1;
 }
 
 int SELECT(ELEMENT data[], int k, int elemCnt)
@@ -49,7 +49,6 @@ int SELECT(ELEMENT data[], int k, int elemCnt)
 	data_copy = (ELEMENT*)malloc(sizeof(ELEMENT)*(elemCnt));
 	data_copy2 = (ELEMENT*)malloc(sizeof(ELEMENT)*(elemCnt));
 	medians = (ELEMENT*)malloc(sizeof(ELEMENT)*(elemCnt/5));
-
 	ELEMENT *S1, *S3;
 	
 	int median;
@@ -57,7 +56,7 @@ int SELECT(ELEMENT data[], int k, int elemCnt)
 	memcpy(data_copy2, data, sizeof(ELEMENT)*(elemCnt));
 
 	//element number less than 50
-	if(elemCnt<=7){
+	if(elemCnt<=20){
 		if(elemCnt==1) return ELEMENT_KEY(&data[0]);
 		 INSERTION_SORT(data, 0, elemCnt-1);
 		 free(data_copy); 
@@ -105,7 +104,6 @@ int SELECT(ELEMENT data[], int k, int elemCnt)
 		if(s1-1>=k){
 			S1 = (ELEMENT*)malloc(sizeof(ELEMENT)*(s1));
 			memcpy(S1, data, sizeof(ELEMENT)*(s1));
-
 			return SELECT(S1, k, elemCnt-s2-s3);
 		}
 		else{
@@ -126,14 +124,18 @@ int SELECT(ELEMENT data[], int k, int elemCnt)
 }
 
 void substitute_sel(ELEMENT *A, ELEMENT *B){
-	A->key = B-> key; A->score = B->score; A->other = B->other; strcpy(A->name, B->name);
+	memcpy(A, B, sizeof(ELEMENT));
+	// A->key = B-> key; A->score = B->score; A->other = B->other; strcpy(A->name, B->name);
 }
 
 void swap_sel(ELEMENT *A, ELEMENT *B)
 {
 	ELEMENT tmp;
-	//return;
-	tmp.key = A-> key; tmp.score = A->score; tmp.other = A->other; strcpy(tmp.name, A->name);
-	A->key = B-> key; A->score = B->score; A->other = B->other; strcpy(A->name, B->name);
-	B->key = tmp.key; B->score = tmp.score; B->other = tmp.other; strcpy(B->name, tmp.name);
+	memcpy(&tmp, A, sizeof(ELEMENT));
+	memcpy(A, B, sizeof(ELEMENT));
+	memcpy(B, &tmp, sizeof(ELEMENT));
+	// //return;
+	// tmp.key = A-> key; tmp.score = A->score; tmp.other = A->other; strcpy(tmp.name, A->name);
+	// A->key = B-> key; A->score = B->score; A->other = B->other; strcpy(A->name, B->name);
+	// B->key = tmp.key; B->score = tmp.score; B->other = tmp.other; strcpy(B->name, tmp.name);
 }

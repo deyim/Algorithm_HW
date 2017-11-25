@@ -21,7 +21,7 @@ int QUICK_SORT(ELEMENT data[], int left, int right) {
 		QUICK_SORT(data, pivot+1, right);
 	}
 
-	return 0;
+	return 1;
 }
 
 int partition(ELEMENT data[], int left, int right)
@@ -56,7 +56,7 @@ void swap_quick(ELEMENT *A, ELEMENT *B)
 {
 	ELEMENT tmp;
 	//return;
-	tmp.key = A-> key; tmp.score = A->score; tmp.other = A->other; strcpy(tmp.name, A->name);
-	A->key = B-> key; A->score = B->score; A->other = B->other; strcpy(A->name, B->name);
-	B->key = tmp.key; B->score = tmp.score; B->other = tmp.other; strcpy(B->name, tmp.name);
+	memcpy(&tmp, A, sizeof(ELEMENT));
+	memcpy(A, B, sizeof(ELEMENT));
+	memcpy(B, &tmp, sizeof(ELEMENT));
 }

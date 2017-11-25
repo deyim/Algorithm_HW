@@ -24,7 +24,7 @@ int QUICK_SORT_OPT(ELEMENT data[], int left, int right) {
 
 	// selection recursion to find median
    else if(right-left>0){
-        selOk = SELECTION_REC(data, left, right, elemCnt/2, &medIdx);
+       selOk = SELECTION_REC(data, left, right, elemCnt/2, &medIdx);
 	   // divide using the found median
 	   pivot = partition_opt(data, left, right, medIdx);
 
@@ -33,7 +33,7 @@ int QUICK_SORT_OPT(ELEMENT data[], int left, int right) {
 	  // if(pivot+1 < right)
 		QUICK_SORT_OPT(data, pivot+1, right);
    }
-	return 0;
+	return 1;
 }
 
 int partition_opt(ELEMENT data[], int left, int right, int medIdx)
@@ -60,7 +60,8 @@ int partition_opt(ELEMENT data[], int left, int right, int medIdx)
 void swap_quick_opt(ELEMENT *A, ELEMENT *B)
 {
 	ELEMENT tmp;
-	tmp.key = A-> key; tmp.score = A->score; tmp.other = A->other; strcpy(tmp.name, A->name);
-	A->key = B-> key; A->score = B->score; A->other = B->other; strcpy(A->name, B->name);
-	B->key = tmp.key; B->score = tmp.score; B->other = tmp.other; strcpy(B->name, tmp.name);
+	//return;
+	memcpy(&tmp, A, sizeof(ELEMENT));
+	memcpy(A, B, sizeof(ELEMENT));
+	memcpy(B, &tmp, sizeof(ELEMENT));
 }

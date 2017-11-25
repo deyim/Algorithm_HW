@@ -4,23 +4,22 @@
 #include "my_types.h"
 
 //#include <Windows.h>
-//__int64 start, freq, end;
-//#define CHECK_TIME_START QueryPerformanceFrequency((LARGE_INTEGER*)&freq); QueryPerformanceCounter((LARGE_INTEGER*)&start)
-//#define CHECK_TIME_END(a) QueryPerformanceCounter((LARGE_INTEGER*)&end); a = (float)((float)(end - start) / (freq / 1000.0f))
-float compute_time;
+// int64_t start, freq, end;
+// #define CHECK_TIME_START QueryPerformanceFrequency((LARGE_INTEGER*)&freq); QueryPerformanceCounter((LARGE_INTEGER*)&start)
+// #define CHECK_TIME_END(a) QueryPerformanceCounter((LARGE_INTEGER*)&end); a = (float)((float)(end - start) / (freq / 1000.0f))
+// float compute_time;
 
 #define STUDENT_ID	20140938
 
 #include "test_data_config.h"  // the content of this file will be modified for evaluation.
 
-//#define DUMP_DATA
+// #define DUMP_DATA
 
-//#define TEST_SELECTION_REC //PERFECT
-//#define TEST_INSERTION_SORT //PERFECT
-//#define TEST_HEAP_SORT //PERFECT
-// #define TEST_QSORT //PERFECT
-// #define TEST_QUICK_SORT //PERFECT
-
+#define TEST_SELECTION_REC //PERFECT
+#define TEST_INSERTION_SORT //PERFECT
+#define TEST_HEAP_SORT //PERFECT
+#define TEST_QSORT //PERFECT
+#define TEST_QUICK_SORT //PERFECT
 #define TEST_QUICK_SORT_OPT
 //#define TEST_QUICK_SORT_OPT_TIME_CHECK
 
@@ -241,10 +240,10 @@ int main(void) {
 		}
 #endif
 
-		//CHECK_TIME_START;
+		// CHECK_TIME_START;
 		test_result = QSORT(data, 0, n - 1);
-		//CHECK_TIME_END(compute_time);
-		printf("*** Time taken by %s to sort the array of size %d = %.3fms\n\n", test_method, n, compute_time);
+		// CHECK_TIME_END(compute_time);
+		// printf("*** Time taken by %s to sort the array of size %d = %.3fms\n\n", test_method, n, compute_time);
 
 		if (test_result == 1) {
 			// the function has finished successfully

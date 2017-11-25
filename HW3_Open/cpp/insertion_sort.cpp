@@ -4,7 +4,8 @@
 
 
 void substitute(ELEMENT *A, ELEMENT *B){
-	A->key = B-> key; A->score = B->score; A->other = B->other; strcpy(A->name, B->name);
+	memcpy(A, B, sizeof(ELEMENT));
+//	A->key = B-> key; A->score = B->score; A->other = B->other; strcpy(A->name, B->name);
 }
 
 int INSERTION_SORT(ELEMENT data[], int left, int right) {
@@ -24,7 +25,7 @@ int INSERTION_SORT(ELEMENT data[], int left, int right) {
 		}
 		substitute(&data[cur], &tmp);
 	}
-	return 0;
+	return 1;
 }
 
 //1,048,576
