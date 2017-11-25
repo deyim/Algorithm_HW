@@ -21,7 +21,7 @@ int QUICK_SORT(ELEMENT data[], int left, int right) {
 		QUICK_SORT(data, pivot+1, right);
 	}
 
-	return 1;
+	return 0;
 }
 
 int partition(ELEMENT data[], int left, int right)

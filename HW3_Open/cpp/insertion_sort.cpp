@@ -24,7 +24,7 @@ int INSERTION_SORT(ELEMENT data[], int left, int right) {
 		}
 		substitute(&data[cur], &tmp);
 	}
-	return 1;
+	return 0;
 }
 
 //1,048,576

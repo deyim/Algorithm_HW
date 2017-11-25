@@ -25,5 +25,5 @@ int QSORT(ELEMENT data[], int left, int right) {
 	// must return 1 if the function finishes normally or return 0 otherwise
 
 	qsort(data + left, right-left+1, sizeof(ELEMENT), keys_compare);
-	return 1;
+	return 0;
 }

@@ -40,7 +40,7 @@ int SELECTION_REC(ELEMENT data[], int left, int right, int k, int *index) {
 
 	free(data_copy);
 
-	return 1;
+	return 0;
 }
 
 int SELECT(ELEMENT data[], int k, int elemCnt)

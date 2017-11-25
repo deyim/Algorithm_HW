@@ -27,7 +27,7 @@ int HEAP_SORT(ELEMENT data[], int left, int right)
 		adjust(data, 0, i+1); //make new array for reduced array
 	}
 	/*********************************indexindexindex!!!!!*****************************************/
-	return 1;
+	return 0;
 }
 
 

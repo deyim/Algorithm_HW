@@ -4,13 +4,14 @@
 #include <time.h>
 #include <limits.h>
 
-#define CHECK_GENERATED_DATA
+//#define CHECK_GENERATED_DATA
 
 //#define N_ELEMENTS 1048576	// 2^20
 //#define N_ELEMENTS 1024		// 2^10
-#define N_ELEMENTS 128		// 2^5
+#define N_ELEMENTS 4194304		// 2^5
 
 #define FILE_NAME_PREFIX  "ENTIRELY_RANDOM"
+//1024, 4096, 16384, 65536, 262144, 1048576, 2097152, 4194304
 
 typedef struct {
 	unsigned int key; float score; double other; char name[16];

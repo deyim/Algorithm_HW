@@ -33,7 +33,7 @@ int QUICK_SORT_OPT(ELEMENT data[], int left, int right) {
 	  // if(pivot+1 < right)
 		QUICK_SORT_OPT(data, pivot+1, right);
    }
-	return 1;
+	return 0;
 }
 
 int partition_opt(ELEMENT data[], int left, int right, int medIdx)
