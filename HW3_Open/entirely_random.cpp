@@ -8,9 +8,9 @@
 
 //#define N_ELEMENTS 1048576	// 2^20
 //#define N_ELEMENTS 1024		// 2^10
-#define N_ELEMENTS 4194304		// 2^5
+#define N_ELEMENTS 150		// 2^5
 
-#define FILE_NAME_PREFIX  "ENTIRELY_RANDOM"
+#define FILE_NAME_PREFIX  "random"
 //1024, 4096, 16384, 65536, 262144, 1048576, 2097152, 4194304
 
 typedef struct {
@@ -29,7 +29,7 @@ int main() {
 	ELEMENT element;
 
 	n = N_ELEMENTS; // n is the number of data elements to be written
-	sprintf(file_name, "%s_%d.binary", FILE_NAME_PREFIX, n);
+	sprintf(file_name, "%d_%s.binary", n, FILE_NAME_PREFIX);
 
 	fprintf(stdout, "^^^ UNIT_MAX = %u\n", UINT_MAX);
 	fprintf(stdout, "^^^ RAND_MAX = %u\n\n", RAND_MAX);

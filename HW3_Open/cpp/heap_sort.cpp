@@ -9,22 +9,21 @@ void adjust(ELEMENT data[], int root, int n);
 // ELEMENT * deleteMaxHeap(ELEMENT data[], int *n);
 int checkIfHeap(ELEMENT data[], int left, int right);
 
-////ì§œì¯©ë‚œë‹¤!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ë‹¤ë§Œë“¤ì—ˆëŠ”ë° ëª»ì“´ë‹¤!!!!!!!!!!!!!!!!!!!!ìŠˆë±Œì•„ã…ì•„ì•™!!!!!!!!!!!!!!!!!!
 
-int HEAP_SORT(ELEMENT data[], int left, int right) 
+int HEAP_SORT(ELEMENT data[], int left, int right)
 {
-	int i, datanum = right-left+1;
+	int i, datanum = right - left + 1;
 	int check;
 
 	//make heap	
-	for( i = datanum/2-1 ; i >= 0 ; i--) //only for parents
+	for (i = datanum / 2 - 1; i >= 0; i--) //only for parents
 		adjust(data, i, datanum);
 
 	//extract item one by one
-	for( i = right-1 ; i >= 0 ; i--){
-		swap_heap(&data[0], &data[i+1]); //move max to the end of array
-		if(i==0) break;
-		adjust(data, 0, i+1); //make new array for reduced array
+	for (i = right - 1; i >= 0; i--) {
+		swap_heap(&data[0], &data[i + 1]); //move max to the end of array
+		if (i == 0) break;
+		adjust(data, 0, i + 1); //make new array for reduced array
 	}
 	/*********************************indexindexindex!!!!!*****************************************/
 	return 1;
@@ -34,16 +33,16 @@ int HEAP_SORT(ELEMENT data[], int left, int right)
 //no recursion since data will be too big!
 int checkIfHeap(ELEMENT data[], int left, int right)
 {
-	int i, childStart, parent, bigChild;
+	int i, childStart, parent=0, bigChild;
 	printf("CHECKING IF THIS IS HEAP\n");
-	childStart = (right)/2;
-	for(i = childStart ; i < right ; i += 2){
-		if(ELEMENT_KEY(&data[i]) > ELEMENT_KEY(&data[i+1]))	bigChild = i;
-		else bigChild = i+1;
+	childStart = (right) / 2;
+	for (i = childStart; i < right; i += 2) {
+		if (ELEMENT_KEY(&data[i]) > ELEMENT_KEY(&data[i + 1]))	bigChild = i;
+		else bigChild = i + 1;
 
-		while(parent >= 1){
-			parent = (bigChild-1)/2;
-			if(ELEMENT_KEY(&data[parent]) < ELEMENT_KEY(&data[bigChild])){
+		while (parent >= 1) {
+			parent = (bigChild - 1) / 2;
+			if (ELEMENT_KEY(&data[parent]) < ELEMENT_KEY(&data[bigChild])) {
 				printf("parent in %d : %d vs child in %d: %d\n", parent, ELEMENT_KEY(&data[parent]), bigChild, ELEMENT_KEY(&data[bigChild]));
 				return 0;
 			}
@@ -56,27 +55,27 @@ int checkIfHeap(ELEMENT data[], int left, int right)
 
 void adjust(ELEMENT data[], int root, int n)
 {
-	int child,rootKey;
+	int child, rootKey;
 	rootKey = ELEMENT_KEY(&data[root]);
 	ELEMENT temp;
-	if(root == 0) child = 1;
-	else child = 2*root;
+	if (root == 0) child = 1;
+	else child = 2 * root;
 	substitute_heap(&temp, &data[root]);
 
-	while(child < n){
-		if(child < n-1 && ELEMENT_KEY(&data[child]) < ELEMENT_KEY(&data[child+1])) child++;
+	while (child < n) {
+		if (child < n - 1 && ELEMENT_KEY(&data[child]) < ELEMENT_KEY(&data[child + 1])) child++;
 
-		if(ELEMENT_KEY(&data[child]) < rootKey) break;
-		else{
-			substitute_heap(&data[child/2], &data[child]);
+		if (ELEMENT_KEY(&data[child]) < rootKey) break;
+		else {
+			substitute_heap(&data[child / 2], &data[child]);
 			child *= 2;
 		}
 	}
-	substitute_heap(&data[child/2], &temp); //ë§ˆì§€ë§‰ child *=2 í•´ì¤€ê²ƒë–„ë¬¸ì— í•´ì¤˜ì•¼.. ì¦‰ *2 í•´ì£¼ê¸°ì „ childì™€ rootë°”ê¾¸ëŠ”ê±° 
-	//ë‚´ë¦°ê±° ì—†ìœ¼ë©´ rootì— ê·¸ëŒ€ë¡œ  temp ë„£ì–´ì£¼ëŠ” ê±°ê³ . 
+	substitute_heap(&data[child / 2], &temp); //¸¶Áö¸· child *=2 ÇØÁØ°Í‹š¹®¿¡ ÇØÁà¾ß.. Áï *2 ÇØÁÖ±âÀü child¿Í root¹Ù²Ù´Â°Å 
+											  //³»¸°°Å ¾øÀ¸¸é root¿¡ ±×´ë·Î  temp ³Ö¾îÁÖ´Â °Å°í. 
 }
 
-void substitute_heap(ELEMENT *A, ELEMENT *B){
+void substitute_heap(ELEMENT *A, ELEMENT *B) {
 	memcpy(A, B, sizeof(ELEMENT));
 	// A->key = B-> key; A->score = B->score; A->other = B->other; strcpy(A->name, B->name);
 }
@@ -96,48 +95,48 @@ void swap_heap(ELEMENT *A, ELEMENT *B)
 /*
 void makeHeap(ELEMENT data[], int root, int n)
 {
-	int i;
-	for( i = root; i <= n ; i++){
-		insertMaxHeap(data, &data[i], &i);
-	}
-	return;
+int i;
+for( i = root; i <= n ; i++){
+insertMaxHeap(data, &data[i], &i);
+}
+return;
 }
 
 void insertMaxHeap(ELEMENT data[], ELEMENT *elem, int *n)
 {
-	int i, cur, curkey;
-	ELEMENT tmp;
-	if(*n == 0) substitute_heap(&data[0], elem);
-	//for(i = 0 ; i < *n ; i++){
-	cur = *n;
-	substitute_heap(&tmp, &data[cur]);
-	curkey = ELEMENT_KEY(&tmp);
-	while(curkey > ELEMENT_KEY(&data[cur/2]) && cur != 0){ 
-		substitute_heap(&data[cur], &data[cur/2]);
-		cur = cur/2;
-	}
-	substitute_heap(&data[cur], &tmp);
-	//}
+int i, cur, curkey;
+ELEMENT tmp;
+if(*n == 0) substitute_heap(&data[0], elem);
+//for(i = 0 ; i < *n ; i++){
+cur = *n;
+substitute_heap(&tmp, &data[cur]);
+curkey = ELEMENT_KEY(&tmp);
+while(curkey > ELEMENT_KEY(&data[cur/2]) && cur != 0){
+substitute_heap(&data[cur], &data[cur/2]);
+cur = cur/2;
+}
+substitute_heap(&data[cur], &tmp);
+//}
 
 }
 
 ELEMENT * deleteMaxHeap(ELEMENT data[], int *n)
 {
-	ELEMENT maxElem = data[0];
+ELEMENT maxElem = data[0];
 
 }
 */
 
 //makeheap debugging
-	// ELEMENT *ptr = data;
-	// int idx=0, quad=1;
-	// while(idx <= right){
-	// 	fprintf(stdout, "%d: %11u", idx, ELEMENT_KEY(ptr));
-	// 	idx++; ptr++;
-	// 	if(idx == quad){
-	// 		quad *= 2;
-	// 		printf("\n");
-	// 	}
+// ELEMENT *ptr = data;
+// int idx=0, quad=1;
+// while(idx <= right){
+// 	fprintf(stdout, "%d: %11u", idx, ELEMENT_KEY(ptr));
+// 	idx++; ptr++;
+// 	if(idx == quad){
+// 		quad *= 2;
+// 		printf("\n");
+// 	}
 
-	// }
-	// fprintf(stdout, "\n");
+// }
+// fprintf(stdout, "\n");

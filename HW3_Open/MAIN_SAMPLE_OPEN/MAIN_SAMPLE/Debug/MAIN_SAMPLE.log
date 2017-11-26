@@ -1,4 +1,0 @@
-﻿  qsort.cpp
-c:\users\insung ihm\desktop\hw3_open\main_sample_open\main_sample\qsort.cpp(5): warning C4101: 'rec_a' :참조되지 않은 지역 변수입니다.
-c:\users\insung ihm\desktop\hw3_open\main_sample_open\main_sample\qsort.cpp(5): warning C4101: 'rec_b' :참조되지 않은 지역 변수입니다.
-  MAIN_SAMPLE.vcxproj -> C:\Users\Insung Ihm\Desktop\HW3_Open\MAIN_SAMPLE_OPEN\Debug\MAIN_SAMPLE.exe
