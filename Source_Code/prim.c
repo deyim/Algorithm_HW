@@ -51,6 +51,27 @@ void Prim2(){
 	}
 }
 
+//another array
+void GRAPHmstV(Graph G, int st[], double wt[]){
+	int v, w, min, n = G->V;
+	for(v = 0 ; v < n ; v++){
+		st[v] = -1; fr[v] = v; wt[v] = maxWT;
+	}
+	wt[n] = maxWT; //dummy vertex
+	for(min = 0 ; min != n ;){
+		v = min; st[min] = fr[min];
+		for(w = 0 , min = n ; w < n ; w++){
+			//min is min vertext so initialize it to dummy vertext n
+			if(st[w] == -1){
+				//if w is not in tree
+				if(P < wt[w]){
+					wt[w] = p; fr[w] = v;
+				}
+				if(wt[w] < wt[min]) min = w;
+			}
+		}
+	}
+}
 
 
 
