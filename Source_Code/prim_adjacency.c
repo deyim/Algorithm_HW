@@ -1,5 +1,4 @@
-// C / C++ program for Dijkstra's shortest path algorithm for adjacency
-// list representation of graph
+// C / C++ program for Prim's MST for adjacency list representation of graph
  
 #include <stdio.h>
 #include <stdlib.h>
@@ -73,7 +72,7 @@ void addEdge(struct Graph* graph, int src, int dest, int weight)
 struct MinHeapNode
 {
     int  v;
-    int dist;
+    int key;
 };
  
 // Structure to represent a min heap
@@ -86,16 +85,16 @@ struct MinHeap
 };
  
 // A utility function to create a new Min Heap Node
-struct MinHeapNode* newMinHeapNode(int v, int dist)
+struct MinHeapNode* newMinHeapNode(int v, int key)
 {
     struct MinHeapNode* minHeapNode =
            (struct MinHeapNode*) malloc(sizeof(struct MinHeapNode));
     minHeapNode->v = v;
-    minHeapNode->dist = dist;
+    minHeapNode->key = key;
     return minHeapNode;
 }
  
-// A utility function to create a Min Heap
+// A utilit function to create a Min Heap
 struct MinHeap* createMinHeap(int capacity)
 {
     struct MinHeap* minHeap =
@@ -127,11 +126,11 @@ void minHeapify(struct MinHeap* minHeap, int idx)
     right = 2 * idx + 2;
  
     if (left < minHeap->size &&
-        minHeap->array[left]->dist < minHeap->array[smallest]->dist )
+        minHeap->array[left]->key < minHeap->array[smallest]->key )
       smallest = left;
  
     if (right < minHeap->size &&
-        minHeap->array[right]->dist < minHeap->array[smallest]->dist )
+        minHeap->array[right]->key < minHeap->array[smallest]->key )
       smallest = right;
  
     if (smallest != idx)
@@ -181,19 +180,19 @@ struct MinHeapNode* extractMin(struct MinHeap* minHeap)
     return root;
 }
  
-// Function to decreasy dist value of a given vertex v. This function
+// Function to decreasy key value of a given vertex v. This function
 // uses pos[] of min heap to get the current index of node in min heap
-void decreaseKey(struct MinHeap* minHeap, int v, int dist)
+void decreaseKey(struct MinHeap* minHeap, int v, int key)
 {
     // Get the index of v in  heap array
     int i = minHeap->pos[v];
  
-    // Get the node and update its dist value
-    minHeap->array[i]->dist = dist;
+    // Get the node and update its key value
+    minHeap->array[i]->key = key;
  
     // Travel up while the complete tree is not hepified.
     // This is a O(Logn) loop
-    while (i && minHeap->array[i]->dist < minHeap->array[(i - 1) / 2]->dist)
+    while (i && minHeap->array[i]->key < minHeap->array[(i - 1) / 2]->key)
     {
         // Swap this node with its parent
         minHeap->pos[minHeap->array[i]->v] = (i-1)/2;
@@ -214,77 +213,79 @@ bool isInMinHeap(struct MinHeap *minHeap, int v)
    return false;
 }
  
-// A utility function used to print the solution
-void printArr(int dist[], int n)
+// A utility function used to print the constructed MST
+void printArr(int arr[], int n)
 {
-    printf("Vertex   Distance from Source\n");
-    for (int i = 0; i < n; ++i)
-        printf("%d \t\t %d\n", i, dist[i]);
+    for (int i = 1; i < n; ++i)
+        printf("%d - %d\n", arr[i], i);
 }
  
-// The main function that calulates distances of shortest paths from src to all
-// vertices. It is a O(ELogV) function
-void dijkstra(struct Graph* graph, int src)
+// The main function that constructs Minimum Spanning Tree (MST)
+// using Prim's algorithm
+void PrimMST(struct Graph* graph)
 {
     int V = graph->V;// Get the number of vertices in graph
-    int dist[V];      // dist values used to pick minimum weight edge in cut
+    int parent[V];   // Array to store constructed MST
+    int key[V];      // Key values used to pick minimum weight edge in cut
  
     // minHeap represents set E
     struct MinHeap* minHeap = createMinHeap(V);
  
-    // Initialize min heap with all vertices. dist value of all vertices 
-    for (int v = 0; v < V; ++v)
+    // Initialize min heap with all vertices. Key value of
+    // all vertices (except 0th vertex) is initially infinite
+    for (int v = 1; v < V; ++v)
     {
-        dist[v] = INT_MAX;
-        minHeap->array[v] = newMinHeapNode(v, dist[v]);
+        parent[v] = -1;
+        key[v] = INT_MAX;
+        minHeap->array[v] = newMinHeapNode(v, key[v]);
         minHeap->pos[v] = v;
     }
  
-    // Make dist value of src vertex as 0 so that it is extracted first
-    dist[src] = 0;
-    decreaseKey(minHeap, src, dist[src]);
+    // Make key value of 0th vertex as 0 so that it
+    // is extracted first
+    key[0] = 0;
+    minHeap->array[0] = newMinHeapNode(0, key[0]);
+    minHeap->pos[0]   = 0;
  
     // Initially size of min heap is equal to V
     minHeap->size = V;
  
     // In the followin loop, min heap contains all nodes
-    // whose shortest distance is not yet finalized.
+    // not yet added to MST.
     while (!isEmpty(minHeap))
     {
-        // Extract the vertex with minimum distance value
+        // Extract the vertex with minimum key value
         struct MinHeapNode* minHeapNode = extractMin(minHeap);
         int u = minHeapNode->v; // Store the extracted vertex number
  
-        // Traverse through all adjacent vertices of u (the extracted vertex)
-        // update their distance values
+        // Traverse through all adjacent vertices of u (the extracted
+        // vertex) and update their key values
         struct AdjListNode* pCrawl = graph->array[u].head;
         while (pCrawl != NULL)
         {
             int v = pCrawl->dest;
  
-            // If shortest distance to v is not finalized yet, and distance to v
-            // through u is less than its previously calculated distance
-            if (isInMinHeap(minHeap, v) && dist[u] != INT_MAX && 
-                                          pCrawl->weight + dist[u] < dist[v])
+            // If v is not yet included in MST and weight of u-v is
+            // less than key value of v, then update key value and
+            // parent of v
+            if (isInMinHeap(minHeap, v) && pCrawl->weight < key[v])
             {
-                dist[v] = dist[u] + pCrawl->weight;
- 
-                // update distance value in min heap also
-                decreaseKey(minHeap, v, dist[v]);
+                key[v] = pCrawl->weight;
+                parent[v] = u;
+                decreaseKey(minHeap, v, key[v]);
             }
             pCrawl = pCrawl->next;
         }
     }
  
-    // print the calculated shortest distances
-    printArr(dist, V);
+    // print edges of MST
+    printArr(parent, V);
 }
- 
  
 // Driver program to test above functions
 int main()
 {
-    // create the graph given in above fugure
+    // Let us create the graph given in above fugure
     int V = 9;
     struct Graph* graph = createGraph(V);
     addEdge(graph, 0, 1, 4);
@@ -302,7 +303,7 @@ int main()
     addEdge(graph, 6, 8, 6);
     addEdge(graph, 7, 8, 7);
  
-    dijkstra(graph, 0);
+    PrimMST(graph);
  
     return 0;
 }
