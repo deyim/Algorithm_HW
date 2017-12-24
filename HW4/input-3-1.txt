@@ -1,5 +1,7 @@
-2
+3
 9
 BBABCBCAB
 6
 XxyZxa
+13
+geeksforgeeks
